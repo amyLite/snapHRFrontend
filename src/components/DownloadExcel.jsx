@@ -4,11 +4,13 @@ import download_icon_black from '../assets/download_icon_black.png'
 
 const ExcelDownloader = () => {
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const [isDownloaded, setIsDownloaded] = useState(false);
 
   const handleDownload = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/download-excel/", {
+      const response = await axios.get(`${API_BASE_URL}/download-excel/`, {
         responseType: "blob",
       });
 

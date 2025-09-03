@@ -6,6 +6,7 @@ import tick from '../assets/tick.svg'
 import spin from '../assets/spin.png'
 
 const Table = ({props, flag}) => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const [sortOrder, setSortOrder] = useState('asc');
     const [sortOrderExp, setSortOrderExp] = useState('asc');
@@ -34,7 +35,7 @@ const Table = ({props, flag}) => {
 
     const handleSaveToDashbord = async (reportName) => {
         setIsSaving(true);
-        const saveReport = await axios.post("http://127.0.0.1:8000/push-report/", {
+        const saveReport = await axios.post(`${API_BASE_URL}/push-report/`, {
           repo_name: reportName,
           report: data
         });
