@@ -8,6 +8,9 @@ import Navbar from './Navbar';
 import spin from '../assets/spin.png'
 
 function BulkResumeUploader() {
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const [timeTaken, setTimeTaken] = useState(null);
   const [fistScreen, setFirstScreen] = useState(true);
   const [files, setFiles] = useState([]);
@@ -65,7 +68,7 @@ function BulkResumeUploader() {
   
     await Promise.all(
       chunks.map(async (chunk) => {
-        const response = await axios.post("http://127.0.0.1:8000/extract-info-bulk/", {
+        const response = await axios.post(`${API_BASE_URL}/extract-info-bulk/`, {
           resumes: chunk.map(r => r.text),
           jd: jobDescription
         });
@@ -94,7 +97,7 @@ function BulkResumeUploader() {
       setLoading(true);
       setFirstScreen(false);
       // Upload resumes and extract text
-      const uploadRes = await axios.post("http://127.0.0.1:8000/upload-bulk-resume/", formData);
+      const uploadRes = await axios.post(`${API_BASE_URL}/upload-bulk-resume/`, formData);
       const results = uploadRes.data.results; // [{ filename, text }, ...]
 
       setExtractedTexts(results.map(res => res.text));
@@ -175,7 +178,7 @@ function BulkResumeUploader() {
       <>
 
       {loading ?<div> <img src={spin} className='w-[60px] m-auto mt-40 animate-spin transition-all ease-in duration-300'/>
-                    <h2 className='mt-4'>{Math.abs(Math.floor((resumeScaned/numberOfFiles)*100))}%</h2>
+                    
                     
                     </div>
                      : 
