@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 export default function AudioBlob() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const circleRef = useRef(null);
 
   useEffect(() => {

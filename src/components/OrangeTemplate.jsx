@@ -13,6 +13,7 @@ import { useLocation, useParams } from 'react-router-dom'
 
 
 const OrangeTemplate = ({props}) => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const { userName, userAge } = useParams();
     console.log("Imprved Text: ", props.name)
 

@@ -12,6 +12,7 @@ const DEEPGRAM_API_KEY = '1ee4347525df048e25761750975b03a71c69af24';
 const DEEPGRAM_TTS_API_URL = 'https://api.deepgram.com/v1/speak?model=aura-helios-en&encoding=mp3';
 
 const Interviewer = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [botQuestions, setBotQuestions] = useState([]);
   const [idValue, setIdValue] = useState('');
   const [UUIDs, setUUIDs] = useState([]);
@@ -91,7 +92,7 @@ const Interviewer = () => {
 
   const handleCandidateAnswer = async (input) => {
     setMessages(prev => [...prev, { sender: 'candidate', text: input }])
-    const followupQuestion = await axios.post("http://127.0.0.1:8000/evaluate/", {
+    const followupQuestion = await axios.post(`${API_BASE_URL}/evaluate/`, {
       answer: input,
       question: botQuestions[currentQuestionIndex]
     });
@@ -116,7 +117,7 @@ const Interviewer = () => {
   const handleStartInterview = async () => {
     setIsRunning(prevIsRunning => !prevIsRunning); 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/get-questions/", {
+      const response = await axios.post(`${API_BASE_URL}/get-questions/`, {
         questions_id: idValue
       });
   
@@ -140,7 +141,7 @@ const Interviewer = () => {
   useEffect(() => {
     const fetchUUIDs = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/get-uuid/");
+        const response = await axios.get(`${API_BASE_URL}/get-uuid/`);
         console.log("UUIDs: ", response.data);  // ✅ This will be the list
         setUUIDs(response.data);
       } catch (error) {

@@ -9,6 +9,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 function AskQuestions() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [fistScreen, setFirstScreen] = useState(true);
   const [questions, setQuestions] = useState([]);
   const [skillQuestions, setSkillQuestions] = useState({});
@@ -65,7 +66,7 @@ function AskQuestions() {
   const handleFollowUp = async (quiz) => {
     setLoadingFollowUp(true);
     setAnswer(null);
-    const followupQuiz = await axios.post("http://127.0.0.1:8000/follow-up/", {
+    const followupQuiz = await axios.post(`${API_BASE_URL}/follow-up/`, {
         text:quiz
     });
     setLoadingFollowUp(false);
@@ -74,7 +75,7 @@ function AskQuestions() {
 
   const handleAnswer = async (quiz) => {
     setLoadingAnswer(true);
-    const ans = await axios.post("http://127.0.0.1:8000/answer/", {
+    const ans = await axios.post(`${API_BASE_URL}/answer/`, {
         text:quiz
     });
     setLoadingAnswer(false);
@@ -105,7 +106,7 @@ function AskQuestions() {
 
   const handleSaveToDashbord = async () => {
     setisSaving(true);
-    const saveReport = await axios.post("http://127.0.0.1:8000/push-questions/");
+    const saveReport = await axios.post(`${API_BASE_URL}/push-questions/`);
     setisSaving(false);
     setSaveQuestions(true);
     setuuid(saveReport.data)
@@ -128,7 +129,7 @@ function AskQuestions() {
       setLoading(true);
       setFirstScreen(false);
       // Upload resumes and extract text
-      const uploadRes = await axios.post("http://127.0.0.1:8000/upload-resume/", formData);
+      const uploadRes = await axios.post(`${API_BASE_URL}/upload-resume/`, formData);
       const extracted_resume_text = uploadRes.data.extracted_text
       setExtractedText(extracted_resume_text);
 
@@ -136,7 +137,7 @@ function AskQuestions() {
 
 
      // Ask questions resume using AI
-      const ques = await axios.post("http://127.0.0.1:8000/ask-questions/", 
+      const ques = await axios.post(`${API_BASE_URL}/ask-questions/`, 
         {text: extractedText,
          jd: jobDescription} // ✅ Ensure JSON format
         );

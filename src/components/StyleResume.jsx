@@ -7,6 +7,7 @@ import { Document, Packer, Paragraph, TextRun } from "docx";
 
 
 export default function StyledResume() {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const resumeRef = useRef(null);
 
 

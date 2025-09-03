@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSpeech } from 'react-text-to-speech';
 
 function HomePage() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const textToRead = "Welcome to our website! Please click the 'Start Reading' button to begin. This text will be read after your interaction.";
   const { speechStatus, start, pause, stop } = useSpeech({ text: textToRead });
 

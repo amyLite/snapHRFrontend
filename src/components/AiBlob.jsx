@@ -3,6 +3,7 @@ import snaphrlogo from '../assets/snaphrlogo.png'
 
 // Main App component for the AI Blob Animation
 const App = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   return (
     // Outer container for centering and full screen height.
     // Background remains white for a light theme.

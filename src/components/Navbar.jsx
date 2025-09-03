@@ -5,6 +5,7 @@ import snaphr from "../assets/snaphr.png"
 import {Link} from "react-router-dom"
 
 const Navbar = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 

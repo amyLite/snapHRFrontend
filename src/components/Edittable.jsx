@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 const Edittable = ({ initialNames = [] }) => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const [names, setNames] = useState(initialNames);
     const [editIndex, setEditIndex] = useState(null);

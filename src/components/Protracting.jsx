@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Interviewer from './Interviewer';
 
 const ProctoringWrapper = ({ children }) => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [isProctoring, setIsProctoring] = useState(false);
   const [idValue, setIdValue] = useState('');
   const [isDisabled, setisDisabled] = useState(true);
 
   // Start proctoring when user clicks
   const startProctoring = () => {
+    
     const docEl = document.documentElement;
 
     if (docEl.requestFullscreen) docEl.requestFullscreen();

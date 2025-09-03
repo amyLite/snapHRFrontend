@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const SaveDailogueBox = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
 

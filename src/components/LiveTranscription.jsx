@@ -38,6 +38,7 @@ registerProcessor('audio-recorder-processor', AudioRecorderProcessor);
 `;
 
 function LiveTranscription() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [isRecording, setIsRecording] = useState(false);
   const [transcription, setTranscription] = useState(""); // Stores final, accumulated transcription
   const [interimTranscription, setInterimTranscription] = useState(""); // Stores the current interim transcription

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import OrangeTemplate from "./OrangeTemplate";
 
 const ResumeUploader = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [file, setFile] = useState(null);
   const [extractedText, setExtractedText] = useState("");
   const [improvedText, setImprovedText] = useState("");

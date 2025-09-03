@@ -1,6 +1,7 @@
 import React from "react";
 
 const Footer = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   return (
     <footer className="bg-gray-900 text-white py-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

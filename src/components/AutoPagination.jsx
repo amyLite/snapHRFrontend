@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const AutoPaginateText = ({ text, maxHeight = '60vw' }) => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [pages, setPages] = useState([]);
   const divRef = useRef(null);
 

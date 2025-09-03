@@ -5,6 +5,7 @@ import webgazer from 'webgazer';
 let isWebGazerInitialized = false;
 
 const GazeTracker = () => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const contentRef = useRef(null); 
     const [gazeCoords, setGazeCoords] = useState({ x: 0, y: 0 });
     const [isCalibrating, setIsCalibrating] = useState(false);
